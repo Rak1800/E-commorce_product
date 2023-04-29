@@ -2,6 +2,7 @@ const express=require('express');
 const mongoose =require('mongoose');
 const bodyParser=require('body-parser')
 const route=require('./routes/routes')
+const path=require("path")
 const cors =require("cors")
 
 
@@ -10,9 +11,9 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
 
-app.use(express.static(path.join(__dirname,"../../frontend/build")))
+app.use(express.static(path.join(__dirname,"./client/build")));
 app.get("*",(req,res)=>{
-    res.sendFile(path.join(__dirname,"../../frontend/build/index.html"))
+    res.sendFile(path.join(__dirname,"./client/build/index.html"))
 })
   
 mongoose.set('strictQuery', true)
